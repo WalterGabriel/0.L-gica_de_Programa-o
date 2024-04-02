@@ -1,5 +1,19 @@
+let listaDeNumerosEscolhidos = [];
+let numeroLimiteDoSorteio = 10;
 function gerarNumeroaleario() {
-return parseInt(Math.random() * 10 + 1);
+  let numeroEscolhido = parseInt(Math.random() * numeroLimiteDoSorteio + 1);
+  let quantidadeDenumerosEscolhidos = listaDeNumerosEscolhidos.length;
+
+  if (quantidadeDenumerosEscolhidos == numeroLimiteDoSorteio){
+    listaDeNumerosEscolhidos = [];
+  }
+  
+  if (listaDeNumerosEscolhidos.includes(numeroEscolhido)) {
+    return gerarNumeroaleario();
+  } else {
+    listaDeNumerosEscolhidos.push(numeroEscolhido);
+    return numeroEscolhido;
+  }
 }
 
 function limparCampo () {
@@ -22,6 +36,7 @@ exibirMensagemInicial();
 function exibirTexto(tag, texto){
   let campo = document.querySelector(tag);
   campo.innerHTML = texto;
+
 }
 
 function exibirMensagemInicial() {
@@ -32,6 +47,7 @@ function exibirMensagemInicial() {
 function verificarChute() {
 
   let chute = document.querySelector('input').value;
+  
 
   if (chute == numeroSecreto) {
     exibirTexto('h1', 'Muito bem!');
